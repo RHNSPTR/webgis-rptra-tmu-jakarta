@@ -546,39 +546,38 @@ def render_legenda():
     yang eksplisit (warna teks hitam, background putih) sehingga
     immune terhadap dark mode / tema gelap Streamlit.
     """
-    legenda_html = '''<div style="background: #ffffff; border: 2px solid #d1d5db; border-radius: 10px; padding: 18px 22px; font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #1f2937; line-height: 2.0; box-shadow: 0 4px 12px rgba(0,0,0,0.10);">
+    legenda_html = '''<div style="background: #ffffff; border: 2px solid #d1d5db; border-radius: 10px; padding: 14px 18px; font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1f2937; line-height: 1.8; box-shadow: 0 2px 8px rgba(0,0,0,0.08); max-width: 600px;">
 <!-- Judul Legenda -->
-<div style="font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #e5e7eb;">Legenda Peta</div>
+<div style="font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid #e5e7eb;">Legenda Peta</div>
 <!-- Bagian TMU -->
 <div style="font-weight: 700; color: #374151; margin-bottom: 4px;">Penanda TMU (Kapasitas Sisa)</div>
-<div style="display:flex; align-items:center; margin-bottom:3px;">
-<span style="display:inline-block; width:16px; height:16px; background:#28a745; border-radius:50%; margin-right:10px; border:1px solid #1e7e34; flex-shrink:0;"></span>
+<div style="display:flex; align-items:center; margin-bottom:2px;">
+<span style="display:inline-block; width:14px; height:14px; background:#28a745; border-radius:50%; margin-right:8px; border:1px solid #1e7e34; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Hijau — Kapasitas &gt; 30% (Tersedia)</span>
 </div>
-<div style="display:flex; align-items:center; margin-bottom:3px;">
-<span style="display:inline-block; width:16px; height:16px; background:#ffc107; border-radius:50%; margin-right:10px; border:1px solid #d4a106; flex-shrink:0;"></span>
+<div style="display:flex; align-items:center; margin-bottom:2px;">
+<span style="display:inline-block; width:14px; height:14px; background:#ffc107; border-radius:50%; margin-right:8px; border:1px solid #d4a106; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Kuning — Kapasitas 10–30% (Menipis)</span>
 </div>
-<div style="display:flex; align-items:center; margin-bottom:8px;">
-<span style="display:inline-block; width:16px; height:16px; background:#dc3545; border-radius:50%; margin-right:10px; border:1px solid #b02a37; flex-shrink:0;"></span>
+<div style="display:flex; align-items:center; margin-bottom:6px;">
+<span style="display:inline-block; width:14px; height:14px; background:#dc3545; border-radius:50%; margin-right:8px; border:1px solid #b02a37; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Merah — Kapasitas &lt; 10% (Kritis)</span>
 </div>
 <!-- Bagian RPTRA -->
 <div style="font-weight: 700; color: #374151; margin-bottom: 4px;">Penanda RPTRA</div>
-<div style="display:flex; align-items:center; margin-bottom:3px;">
-<span style="display:inline-block; width:16px; height:16px; background:#3b82f6; border-radius:50%; margin-right:10px; border:1px solid #2563eb; flex-shrink:0;"></span>
+<div style="display:flex; align-items:center; margin-bottom:2px;">
+<span style="display:inline-block; width:14px; height:14px; background:#3b82f6; border-radius:50%; margin-right:8px; border:1px solid #2563eb; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Biru — Fasilitas Lengkap</span>
 </div>
-<div style="display:flex; align-items:center; margin-bottom:8px;">
-<span style="display:inline-block; width:16px; height:16px; background:#8b5cf6; border-radius:50%; margin-right:10px; border:1px solid #7c3aed; flex-shrink:0;"></span>
+<div style="display:flex; align-items:center; margin-bottom:6px;">
+<span style="display:inline-block; width:14px; height:14px; background:#8b5cf6; border-radius:50%; margin-right:8px; border:1px solid #7c3aed; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Ungu — Fasilitas Terbatas</span>
 </div>
 <!-- Bagian Buffer -->
 <div style="font-weight: 700; color: #374151; margin-bottom: 4px;">Zona Buffer Eksklusi</div>
 <div style="display:flex; align-items:center;">
-<span style="display:inline-block; width:24px; height:16px; background:rgba(232,141,156,0.5); border:1px solid #d63a5e; border-radius:4px; margin-right:10px; flex-shrink:0;"></span>
+<span style="display:inline-block; width:20px; height:14px; background:rgba(232,141,156,0.5); border:1px solid #d63a5e; border-radius:3px; margin-right:8px; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Area 500 m sekitar TMU (zona penyangga)</span>
-</div>
 </div>
 </div>'''
     return legenda_html
@@ -731,24 +730,12 @@ with tab1:
             "Silakan ubah pengaturan filter pada sidebar."
         )
 
-    # ===== Mobile Responsive Improvement =====
-    # ===== Float Legend on Map =====
-    from branca.element import Template, MacroElement
-    
-    # Dapatkan string HTML dari fungsi legenda
-    legenda_str = render_legenda()
-    
-    macro = MacroElement()
-    macro._template = Template('''
-    {% macro html(this, kwargs) %}
-    <div style="position: absolute; bottom: 50px; right: 50px; z-index:9999; pointer-events: auto;">
-    ''' + legenda_str + '''
-    </div>
-    {% endmacro %}
-    ''')
-    m.get_root().add_child(macro)
-
+    # ===== Tampilkan Peta =====
     st_folium(m, use_container_width=True, height=620, returned_objects=[])
+
+    # ===== Legenda di bawah peta (responsive) =====
+    legenda_str = render_legenda()
+    st.markdown(legenda_str, unsafe_allow_html=True)
 
     # ─────────────────────────────────────────────
     # 15. STATISTIK RINGKAS
