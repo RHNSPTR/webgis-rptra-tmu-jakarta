@@ -587,7 +587,7 @@ pilihan_status = st.sidebar.multiselect(
 st.sidebar.markdown("---")
 
 # 10c. Kontrol Visibilitas Layer (Checkbox)
-st.sidebar.markdown("### 🔘 Kontrol Visibilitas Layer")
+st.sidebar.markdown("### Kontrol Visibilitas Layer")
 tampil_tmu = st.sidebar.checkbox("Tampilkan Layer TMU", value=True)
 tampil_rptra = st.sidebar.checkbox("Tampilkan Layer RPTRA", value=True)
 tampil_buffer = st.sidebar.checkbox("Tampilkan Buffer 500 m TMU ", value=True)
