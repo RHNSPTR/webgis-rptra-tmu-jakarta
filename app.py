@@ -824,7 +824,7 @@ with tab1:
         (Random Forest), sistem ini mampu merekomendasikan lokasi prioritas pembangunan
         RPTRA baru secara data-driven.
         <br><br>
-        <b>⚠️ Sumber Data:</b>
+        <b>Sumber Data:</b>
         <br>Aplikasi ini mengintegrasikan data riil untuk keperluan pemetaan dan analisis spasial, meliputi:
         <ul>
             <li><b>Data Spasial (Koordinat Latitude/Longitude):</b> Digunakan untuk akurasi pemetaan lokasi TMU dan RPTRA di DKI Jakarta yang bersumber dari <b>OpenStreetMap</b> dan <b>Google Maps</b>.</li>
