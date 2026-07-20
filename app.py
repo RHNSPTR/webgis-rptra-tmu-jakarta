@@ -741,7 +741,7 @@ with tab1:
         if not gdf_tmu_filtered.empty:
             st.dataframe(
                 gdf_tmu_filtered.drop(columns=["geometry"]).reset_index(drop=True),
-                width="stretch",
+                use_container_width=True,
             )
         else:
             st.info("Tidak ada data TMU sesuai filter yang dipilih.")
@@ -750,7 +750,7 @@ with tab1:
         if not gdf_rptra_filtered.empty:
             st.dataframe(
                 gdf_rptra_filtered.drop(columns=["geometry"]).reset_index(drop=True),
-                width="stretch",
+                use_container_width=True,
             )
         else:
             st.info("Tidak ada data RPTRA sesuai filter yang dipilih.")
