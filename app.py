@@ -39,7 +39,7 @@ from sklearn.metrics import accuracy_score
 # ─────────────────────────────────────────────
 st.set_page_config(
     page_title="Peta Monitoring TMU & RPTRA – DKI Jakarta",
-    page_icon="🗺️",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -542,7 +542,7 @@ def render_legenda():
 <span style="color:#1f2937;">Ungu — Fasilitas Terbatas</span>
 </div>
 <!-- Bagian Buffer -->
-<div style="font-weight: 700; color: #374151; margin-bottom: 4px;">🔴 Zona Buffer Eksklusi</div>
+<div style="font-weight: 700; color: #374151; margin-bottom: 4px;">Zona Buffer Eksklusi</div>
 <div style="display:flex; align-items:center;">
 <span style="display:inline-block; width:24px; height:16px; background:rgba(232,141,156,0.5); border:1px solid #d63a5e; border-radius:4px; margin-right:10px; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Area 500 m sekitar TMU (zona penyangga)</span>
@@ -561,7 +561,7 @@ gdf_buffer = buat_buffer_tmu(gdf_tmu)
 # ─────────────────────────────────────────────
 # 10. SIDEBAR — FILTER DINAMIS & KONTROL LAYER
 # ─────────────────────────────────────────────
-st.sidebar.markdown("## 🗺️ Panel Kontrol Peta")
+st.sidebar.markdown("## Panel Kontrol Peta")
 st.sidebar.markdown("---")
 
 # 10a. Filter Wilayah Administrasi
@@ -569,7 +569,7 @@ semua_wilayah = sorted(
     set(gdf_tmu["Wilayah_Administrasi"].tolist() + gdf_rptra["Wilayah_Administrasi"].tolist())
 )
 pilihan_wilayah = st.sidebar.multiselect(
-    "📍 Filter Wilayah Administrasi",
+    "Filter Wilayah Administrasi",
     options=semua_wilayah,
     default=semua_wilayah,
     help="Pilih satu atau lebih wilayah untuk ditampilkan di peta.",
@@ -578,7 +578,7 @@ pilihan_wilayah = st.sidebar.multiselect(
 # 10b. Filter Status Kapasitas TMU
 semua_status = sorted(gdf_tmu["Status_Kapasitas"].unique().tolist())
 pilihan_status = st.sidebar.multiselect(
-    "⚠️ Filter Status Kapasitas TMU",
+    "️ Filter Status Kapasitas TMU",
     options=semua_status,
     default=semua_status,
     help="Pilih status kapasitas TMU yang ingin ditampilkan.",
@@ -590,7 +590,7 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### 🔘 Kontrol Visibilitas Layer")
 tampil_tmu = st.sidebar.checkbox("Tampilkan Layer TMU 🪦", value=True)
 tampil_rptra = st.sidebar.checkbox("Tampilkan Layer RPTRA 🏞️", value=True)
-tampil_buffer = st.sidebar.checkbox("Tampilkan Buffer 500 m TMU 🔴", value=True)
+tampil_buffer = st.sidebar.checkbox("Tampilkan Buffer 500 m TMU ", value=True)
 
 st.sidebar.markdown("---")
 st.sidebar.caption("© 2025 — Ujian Akhir Semester SIG")
@@ -694,7 +694,7 @@ with tab1:
     # Peringatan jika tidak ada data setelah filter
     if gdf_tmu_filtered.empty and gdf_rptra_filtered.empty:
         st.warning(
-            "⚠️ Tidak ada data yang cocok dengan filter yang dipilih. "
+            "️ Tidak ada data yang cocok dengan filter yang dipilih. "
             "Silakan ubah pengaturan filter pada sidebar."
         )
 
@@ -710,7 +710,7 @@ with tab1:
     # ─────────────────────────────────────────────
     # 16. STATISTIK RINGKAS
     with col_stats:
-        st.markdown("### 📊 Statistik Data Saat Ini")
+        st.markdown("### Statistik Data Saat Ini")
 
         total_tmu = len(gdf_tmu_filtered)
         tmu_kritis = len(gdf_tmu_filtered[gdf_tmu_filtered["Status_Kapasitas"] == "Kritis"])
@@ -737,7 +737,7 @@ with tab1:
     # ─────────────────────────────────────────────
     # 17. TABEL DATA INTERAKTIF
     st.markdown("---")
-    with st.expander("📄 Lihat Tabel Data TMU", expanded=False):
+    with st.expander("Lihat Tabel Data TMU", expanded=False):
         if not gdf_tmu_filtered.empty:
             st.dataframe(
                 gdf_tmu_filtered.drop(columns=["geometry"]).reset_index(drop=True),
@@ -746,7 +746,7 @@ with tab1:
         else:
             st.info("Tidak ada data TMU sesuai filter yang dipilih.")
 
-    with st.expander("📄 Lihat Tabel Data RPTRA", expanded=False):
+    with st.expander("Lihat Tabel Data RPTRA", expanded=False):
         if not gdf_rptra_filtered.empty:
             st.dataframe(
                 gdf_rptra_filtered.drop(columns=["geometry"]).reset_index(drop=True),
@@ -758,7 +758,7 @@ with tab1:
     # ─────────────────────────────────────────────
     # 18. RINGKASAN EKSEKUTIF
     st.markdown("---")
-    st.markdown("### 📝 Ringkasan Eksekutif")
+    st.markdown("### Ringkasan Eksekutif")
     st.markdown(
         """
         <div class="exec-summary">
@@ -775,7 +775,7 @@ with tab1:
         (Random Forest), sistem ini mampu merekomendasikan lokasi prioritas pembangunan
         RPTRA baru secara data-driven.
         <br><br>
-        <b>⚠️ Disclaimer & Sumber Data:</b>
+        <b>️ Disclaimer & Sumber Data:</b>
         <br>Data spasial (titik koordinat <i>Latitude/Longitude</i>) untuk lokasi TMU dan RPTRA didapatkan 
         secara presisi dari data dunia nyata melalui <b>OpenStreetMap</b> dan <b>Google Maps</b>. 
         Namun, data atribut yang menyertainya (seperti Luas Area, Status Kapasitas, Tahun Berdiri, Fasilitas, dan Kondisi) 
@@ -790,7 +790,7 @@ with tab1:
     )
 
     st.markdown(
-        "<br><center><sub>🔧 Dibangun dengan Streamlit · Folium · GeoPandas · Shapely — "
+        "<br><center><sub>Dibangun dengan Streamlit · Folium · GeoPandas · Shapely — "
         "Ujian Akhir Semester Sistem Informasi Geografis</sub></center>",
         unsafe_allow_html=True,
     )
@@ -833,7 +833,7 @@ with tab2:
     df_rw["Label_Prioritas"] = df_rw.apply(assign_label, axis=1)
     
     st.dataframe(df_rw, use_container_width=True)
-    st.caption("💡 Keterangan Label Prioritas Data Training: **2 = Sangat Prioritas**, **1 = Cukup Prioritas**, **0 = Tidak Prioritas**")
+    st.caption("Keterangan Label Prioritas Data Training: **2 = Sangat Prioritas**, **1 = Cukup Prioritas**, **0 = Tidak Prioritas**")
     
     st.markdown("---")
     st.markdown("### 2️⃣ Pelatihan Model Machine Learning (Live Pipeline)")
@@ -855,7 +855,7 @@ with tab2:
     col1, col2 = st.columns([1, 1.5])
     with col1:
         st.metric("Skor Akurasi Model (Accuracy Score)", f"{accuracy * 100:.2f}%")
-        st.success("✅ Pipeline Executed! Model Random Forest Classifier berhasil dilatih menggunakan dataset dengan proporsi 80% Training Set dan 20% Test Set.")
+        st.success(" Pipeline Executed! Model Random Forest Classifier berhasil dilatih menggunakan dataset dengan proporsi 80% Training Set dan 20% Test Set.")
         
     with col2:
         st.markdown("**Feature Importance (Faktor Paling Berpengaruh):**")
@@ -871,7 +871,7 @@ with tab2:
     st.markdown("---")
     st.markdown("### 3️⃣ Simulasi Prediksi RW Baru")
     
-    if st.button("🚀 Simulasikan Prediksi RW Baru"):
+    if st.button("Simulasikan Prediksi RW Baru"):
         # Data baru yang belum berlabel
         new_data = pd.DataFrame({
             "ID_RW": ["RW-901", "RW-902", "RW-903", "RW-904"],
@@ -903,7 +903,7 @@ with tab2:
             styled_new_data = new_data.style.applymap(color_pred, subset=['Prediksi_Prioritas'])
             
         st.dataframe(styled_new_data, use_container_width=True)
-        st.info("💡 **Hasil Prediksi Berdasarkan Model:** Hijau = Sangat Prioritas (2), Kuning = Cukup Prioritas (1), Merah = Tidak Prioritas (0)")
+        st.info("**Hasil Prediksi Berdasarkan Model:** Hijau = Sangat Prioritas (2), Kuning = Cukup Prioritas (1), Merah = Tidak Prioritas (0)")
 
     st.markdown("---")
     
