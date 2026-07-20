@@ -579,8 +579,9 @@ def render_legenda():
 <span style="display:inline-block; width:24px; height:16px; background:rgba(232,141,156,0.5); border:1px solid #d63a5e; border-radius:4px; margin-right:10px; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Area 500 m sekitar TMU (zona penyangga)</span>
 </div>
+</div>
 </div>'''
-    st.markdown(legenda_html, unsafe_allow_html=True)
+    return legenda_html
 
 
 # ─────────────────────────────────────────────
@@ -731,6 +732,31 @@ with tab1:
         )
 
     # ===== Mobile Responsive Improvement =====
+    # ===== Float Legend on Map =====
+    from branca.element import Template, MacroElement
+    
+    # Dapatkan string HTML dari fungsi legenda
+    legenda_str = render_legenda()
+    
+    macro = MacroElement()
+    macro._template = Template('''
+    {% macro html(this, kwargs) %}
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+    <div style="position: absolute; bottom: 50px; right: 50px; z-index:9999;">
+    ''' + legenda_str + '''
+    </div>
+    </body>
+    </html>
+    {% endmacro %}
+    ''')
+    m.get_root().add_child(macro)
+
     st_folium(m, use_container_width=True, height=620, returned_objects=[])
 
     # ─────────────────────────────────────────────
@@ -738,7 +764,9 @@ with tab1:
     col_legend, col_stats = st.columns([1, 1])
 
     with col_legend:
-        render_legenda()
+        # Legenda sudah dipindah ke dalam peta, jadi di sini bisa dibiarkan kosong atau menampilkan info lain
+        st.info("Legenda telah dipindahkan ke dalam peta untuk tampilan yang lebih baik.")
+
 
     # ─────────────────────────────────────────────
     # 16. STATISTIK RINGKAS
