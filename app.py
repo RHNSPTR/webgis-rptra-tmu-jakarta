@@ -760,40 +760,28 @@ with tab1:
     st_folium(m, use_container_width=True, height=620, returned_objects=[])
 
     # ─────────────────────────────────────────────
-    # 15. LEGENDA KUSTOM & STATISTIK (DUA KOLOM)
-    col_legend, col_stats = st.columns([1, 1])
+    # 15. STATISTIK RINGKAS
+    st.markdown("### Statistik Data Saat Ini")
 
-    with col_legend:
-        # Legenda sudah dipindah ke dalam peta, jadi di sini bisa dibiarkan kosong atau menampilkan info lain
-        st.info("Legenda telah dipindahkan ke dalam peta untuk tampilan yang lebih baik.")
+    total_tmu = len(gdf_tmu_filtered)
+    tmu_kritis = len(gdf_tmu_filtered[gdf_tmu_filtered["Status_Kapasitas"] == "Kritis"])
+    total_rptra = len(gdf_rptra_filtered)
+    rptra_lengkap = len(gdf_rptra_filtered[gdf_rptra_filtered["Kondisi"] == "Lengkap"])
 
+    met1, met2, met3, met4 = st.columns(4)
+    met1.metric("Total TMU Ditampilkan", total_tmu)
+    met2.metric("TMU Kritis (< 10 %)", tmu_kritis)
+    met3.metric("Total RPTRA Ditampilkan", total_rptra)
+    met4.metric("RPTRA Kondisi Lengkap", rptra_lengkap)
 
-    # ─────────────────────────────────────────────
-    # 16. STATISTIK RINGKAS
-    with col_stats:
-        st.markdown("### Statistik Data Saat Ini")
-
-        total_tmu = len(gdf_tmu_filtered)
-        tmu_kritis = len(gdf_tmu_filtered[gdf_tmu_filtered["Status_Kapasitas"] == "Kritis"])
-        total_rptra = len(gdf_rptra_filtered)
-        rptra_lengkap = len(gdf_rptra_filtered[gdf_rptra_filtered["Kondisi"] == "Lengkap"])
-
-        met1, met2 = st.columns(2)
-        met1.metric("Total TMU Ditampilkan", total_tmu)
-        met2.metric("TMU Kritis (< 10 %)", tmu_kritis)
-
-        met3, met4 = st.columns(2)
-        met3.metric("Total RPTRA Ditampilkan", total_rptra)
-        met4.metric("RPTRA Kondisi Lengkap", rptra_lengkap)
-
-        if total_tmu > 0:
-            rata2_kapasitas = gdf_tmu_filtered["Kapasitas_Persen"].mean()
-            st.progress(
-                min(int(rata2_kapasitas), 100),
-                text=f"Rata-rata Kapasitas TMU yang ditampilkan: **{rata2_kapasitas:.1f}%**",
-            )
-        else:
-            st.info("Tidak ada TMU yang ditampilkan untuk menghitung rata-rata.")
+    if total_tmu > 0:
+        rata2_kapasitas = gdf_tmu_filtered["Kapasitas_Persen"].mean()
+        st.progress(
+            min(int(rata2_kapasitas), 100),
+            text=f"Rata-rata Kapasitas TMU yang ditampilkan: **{rata2_kapasitas:.1f}%**",
+        )
+    else:
+        st.info("Tidak ada TMU yang ditampilkan untuk menghitung rata-rata.")
 
     # ─────────────────────────────────────────────
     # 17. TABEL DATA INTERAKTIF
