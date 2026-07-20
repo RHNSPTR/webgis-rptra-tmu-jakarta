@@ -37,12 +37,44 @@ from sklearn.metrics import accuracy_score
 # ─────────────────────────────────────────────
 # 2. KONFIGURASI HALAMAN STREAMLIT
 # ─────────────────────────────────────────────
+# ===== Mobile Responsive Improvement =====
 st.set_page_config(
-    page_title="Peta Monitoring TMU & RPTRA – DKI Jakarta",
-    page_icon="",
+    page_title="WebGIS RPTRA & TMU Jakarta",
+    page_icon="🗺️",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed"
 )
+
+# ===== Mobile Responsive Improvement =====
+st.markdown("""
+<style>
+@media (max-width: 768px) {
+    .block-container {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    h1, h2, h3 {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    h1 { font-size: 1.8rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    h3 { font-size: 1.2rem !important; }
+    p, div, span, label { font-size: 0.95rem !important; }
+    
+    /* Ensure cards and charts take full width */
+    div[data-testid="stExpander"] { width: 100% !important; }
+    .stDataFrame { width: 100% !important; }
+    
+    /* Reduce sidebar padding */
+    [data-testid="stSidebar"] > div:first-child {
+        padding: 2rem 1rem !important;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────
 # 3. STYLING CSS KUSTOM
@@ -698,7 +730,8 @@ with tab1:
             "Silakan ubah pengaturan filter pada sidebar."
         )
 
-    st_folium(m, width="100%", height=620, returned_objects=[])
+    # ===== Mobile Responsive Improvement =====
+    st_folium(m, use_container_width=True, height=620, returned_objects=[])
 
     # ─────────────────────────────────────────────
     # 15. LEGENDA KUSTOM & STATISTIK (DUA KOLOM)
@@ -866,7 +899,8 @@ with tab2:
             "Tingkat Kepentingan": importances
         }).set_index("Fitur")
         
-        st.bar_chart(df_importances, horizontal=True)
+        # ===== Mobile Responsive Improvement =====
+    st.bar_chart(df_importances, horizontal=True, use_container_width=True)
         
     st.markdown("---")
     st.markdown("### 3 Simulasi Prediksi RW Baru")
