@@ -459,7 +459,7 @@ def popup_tmu(row: pd.Series) -> folium.Popup:
     badge_color = warna_kapasitas(row["Kapasitas_Persen"])
     html = f"""
     <div style="font-family:Arial,sans-serif; width:260px;">
-        <h4 style="margin:0 0 6px; color:#1a1a2e;">🪦 {row['Nama_TMU']}</h4>
+        <h4 style="margin:0 0 6px; color:#1a1a2e;">{row['Nama_TMU']}</h4>
         <table style="font-size:13px; border-collapse:collapse; width:100%;">
             <tr><td style="padding:3px 6px; font-weight:600;">Luas Area</td>
                 <td style="padding:3px 6px;">{row['Luas_Area_m2']:,} m²</td></tr>
@@ -487,7 +487,7 @@ def popup_rptra(row: pd.Series) -> folium.Popup:
     kondisi_color = "#3b82f6" if row["Kondisi"] == "Lengkap" else "#8b5cf6"
     html = f"""
     <div style="font-family:Arial,sans-serif; width:250px;">
-        <h4 style="margin:0 0 6px; color:#1a1a2e;">🏞️ {row['Nama_RPTRA']}</h4>
+        <h4 style="margin:0 0 6px; color:#1a1a2e;">{row['Nama_RPTRA']}</h4>
         <table style="font-size:13px; border-collapse:collapse; width:100%;">
             <tr><td style="padding:3px 6px; font-weight:600;">Fasilitas Utama</td>
                 <td style="padding:3px 6px;">{row['Fasilitas_Utama']}</td></tr>
@@ -516,9 +516,9 @@ def render_legenda():
     """
     legenda_html = '''<div style="background: #ffffff; border: 2px solid #d1d5db; border-radius: 10px; padding: 18px 22px; font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #1f2937; line-height: 2.0; box-shadow: 0 4px 12px rgba(0,0,0,0.10);">
 <!-- Judul Legenda -->
-<div style="font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #e5e7eb;">📋 Legenda Peta</div>
+<div style="font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #e5e7eb;">Legenda Peta</div>
 <!-- Bagian TMU -->
-<div style="font-weight: 700; color: #374151; margin-bottom: 4px;">🪦 Penanda TMU (Kapasitas Sisa)</div>
+<div style="font-weight: 700; color: #374151; margin-bottom: 4px;">Penanda TMU (Kapasitas Sisa)</div>
 <div style="display:flex; align-items:center; margin-bottom:3px;">
 <span style="display:inline-block; width:16px; height:16px; background:#28a745; border-radius:50%; margin-right:10px; border:1px solid #1e7e34; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Hijau — Kapasitas &gt; 30% (Tersedia)</span>
@@ -532,7 +532,7 @@ def render_legenda():
 <span style="color:#1f2937;">Merah — Kapasitas &lt; 10% (Kritis)</span>
 </div>
 <!-- Bagian RPTRA -->
-<div style="font-weight: 700; color: #374151; margin-bottom: 4px;">🏞️ Penanda RPTRA</div>
+<div style="font-weight: 700; color: #374151; margin-bottom: 4px;">Penanda RPTRA</div>
 <div style="display:flex; align-items:center; margin-bottom:3px;">
 <span style="display:inline-block; width:16px; height:16px; background:#3b82f6; border-radius:50%; margin-right:10px; border:1px solid #2563eb; flex-shrink:0;"></span>
 <span style="color:#1f2937;">Biru — Fasilitas Lengkap</span>
@@ -588,8 +588,8 @@ st.sidebar.markdown("---")
 
 # 10c. Kontrol Visibilitas Layer (Checkbox)
 st.sidebar.markdown("### 🔘 Kontrol Visibilitas Layer")
-tampil_tmu = st.sidebar.checkbox("Tampilkan Layer TMU 🪦", value=True)
-tampil_rptra = st.sidebar.checkbox("Tampilkan Layer RPTRA 🏞️", value=True)
+tampil_tmu = st.sidebar.checkbox("Tampilkan Layer TMU", value=True)
+tampil_rptra = st.sidebar.checkbox("Tampilkan Layer RPTRA", value=True)
 tampil_buffer = st.sidebar.checkbox("Tampilkan Buffer 500 m TMU ", value=True)
 
 st.sidebar.markdown("---")
@@ -663,7 +663,7 @@ with tab1:
             folium.Marker(
                 location=[row["latitude"], row["longitude"]],
                 popup=popup_tmu(row),
-                tooltip=f"🪦 {row['Nama_TMU']} ({row['Kapasitas_Persen']}%)",
+                tooltip=f"{row['Nama_TMU']} ({row['Kapasitas_Persen']}%)",
                 icon=folium.Icon(color=warna, icon="plus-sign", prefix="glyphicon"),
             ).add_to(fg_tmu)
         fg_tmu.add_to(m)
@@ -676,7 +676,7 @@ with tab1:
             folium.Marker(
                 location=[row["latitude"], row["longitude"]],
                 popup=popup_rptra(row),
-                tooltip=f"🏞️ {row['Nama_RPTRA']}",
+                tooltip=f"{row['Nama_RPTRA']}",
                 icon=folium.Icon(color=warna, icon="tree-deciduous", prefix="glyphicon"),
             ).add_to(fg_rptra)
         fg_rptra.add_to(m)
@@ -801,7 +801,7 @@ with tab2:
     st.markdown("<div style='text-align: center; margin-bottom: 20px;'>Sistem rekomendasi berbasis <b>Machine Learning (Random Forest)</b> untuk menganalisis kelayakan lokasi RW dalam pembangunan RPTRA baru berdasarkan parameter keruangan dan kependudukan.</div>", unsafe_allow_html=True)
     
     st.markdown("---")
-    st.markdown("### 1️⃣ Dataset Simulasi Tingkat RW (Spatial Features)")
+    st.markdown("### 1 Dataset Simulasi Tingkat RW (Spatial Features)")
     
     # Generate Mock Data
     np.random.seed(42)
@@ -836,7 +836,7 @@ with tab2:
     st.caption("Keterangan Label Prioritas Data Training: **2 = Sangat Prioritas**, **1 = Cukup Prioritas**, **0 = Tidak Prioritas**")
     
     st.markdown("---")
-    st.markdown("### 2️⃣ Pelatihan Model Machine Learning (Live Pipeline)")
+    st.markdown("### 2 Pelatihan Model Machine Learning (Live Pipeline)")
     
     # Splitting Data
     X = df_rw[["Jarak_Minimal_ke_TMU", "Persentase_Lahan_Kosong", "Kepadatan_Penduduk_Anak"]]
@@ -869,7 +869,7 @@ with tab2:
         st.bar_chart(df_importances, horizontal=True)
         
     st.markdown("---")
-    st.markdown("### 3️⃣ Simulasi Prediksi RW Baru")
+    st.markdown("### 3 Simulasi Prediksi RW Baru")
     
     if st.button("Simulasikan Prediksi RW Baru"):
         # Data baru yang belum berlabel
