@@ -832,7 +832,7 @@ with tab2:
             
     df_rw["Label_Prioritas"] = df_rw.apply(assign_label, axis=1)
     
-    st.dataframe(df_rw, width="stretch")
+    st.dataframe(df_rw, use_container_width=True)
     st.caption("💡 Keterangan Label Prioritas Data Training: **2 = Sangat Prioritas**, **1 = Cukup Prioritas**, **0 = Tidak Prioritas**")
     
     st.markdown("---")
