@@ -741,18 +741,9 @@ with tab1:
     macro = MacroElement()
     macro._template = Template('''
     {% macro html(this, kwargs) %}
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-    <div style="position: absolute; bottom: 50px; right: 50px; z-index:9999;">
+    <div style="position: absolute; bottom: 50px; right: 50px; z-index:9999; pointer-events: auto;">
     ''' + legenda_str + '''
     </div>
-    </body>
-    </html>
     {% endmacro %}
     ''')
     m.get_root().add_child(macro)
