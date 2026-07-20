@@ -127,7 +127,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         # ── Jakarta Pusat (2 TMU) ──
         {
             "Nama_TMU": "TPU Karet Bivak",
-            "Luas_Area_m2": 94000,
+            "Luas_Area_m2": 162000,
             "Status_Kapasitas": "Kritis",
             "Tahun_Berdiri": 1918,
             "Wilayah_Administrasi": "Jakarta Pusat",
@@ -137,7 +137,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         },
         {
             "Nama_TMU": "TPU Menteng Pulo",
-            "Luas_Area_m2": 52000,
+            "Luas_Area_m2": 200000,
             "Status_Kapasitas": "Kritis",
             "Tahun_Berdiri": 1942,
             "Wilayah_Administrasi": "Jakarta Pusat",
@@ -148,7 +148,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         # ── Jakarta Selatan (3 TMU) ──
         {
             "Nama_TMU": "TPU Jeruk Purut",
-            "Luas_Area_m2": 147000,
+            "Luas_Area_m2": 91200,
             "Status_Kapasitas": "Kritis",
             "Tahun_Berdiri": 1954,
             "Wilayah_Administrasi": "Jakarta Selatan",
@@ -158,7 +158,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         },
         {
             "Nama_TMU": "TPU Tanah Kusir",
-            "Luas_Area_m2": 78000,
+            "Luas_Area_m2": 519503,
             "Status_Kapasitas": "Tersedia",
             "Tahun_Berdiri": 1965,
             "Wilayah_Administrasi": "Jakarta Selatan",
@@ -179,7 +179,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         # ── Jakarta Timur (3 TMU) ──
         {
             "Nama_TMU": "TPU Pondok Ranggon",
-            "Luas_Area_m2": 345000,
+            "Luas_Area_m2": 400000,
             "Status_Kapasitas": "Tersedia",
             "Tahun_Berdiri": 1990,
             "Wilayah_Administrasi": "Jakarta Timur",
@@ -189,17 +189,17 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         },
         {
             "Nama_TMU": "TPU Penggilingan",
-            "Luas_Area_m2": 88000,
-            "Status_Kapasitas": "Tersedia",
+            "Luas_Area_m2": 7848,
+            "Status_Kapasitas": "Kritis",
             "Tahun_Berdiri": 2005,
             "Wilayah_Administrasi": "Jakarta Timur",
-            "Kapasitas_Persen": 60,
+            "Kapasitas_Persen": 5,
             "latitude": -6.1972,
             "longitude": 106.8988,
         },
         {
             "Nama_TMU": "TPU Cipayung",
-            "Luas_Area_m2": 55000,
+            "Luas_Area_m2": 24000,
             "Status_Kapasitas": "Kritis",
             "Tahun_Berdiri": 1972,
             "Wilayah_Administrasi": "Jakarta Timur",
@@ -210,7 +210,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         # ── Jakarta Utara (2 TMU) ──
         {
             "Nama_TMU": "TPU Semper",
-            "Luas_Area_m2": 210000,
+            "Luas_Area_m2": 575660,
             "Status_Kapasitas": "Tersedia",
             "Tahun_Berdiri": 1978,
             "Wilayah_Administrasi": "Jakarta Utara",
@@ -220,7 +220,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         },
         {
             "Nama_TMU": "TPU Rorotan",
-            "Luas_Area_m2": 180000,
+            "Luas_Area_m2": 250000,
             "Status_Kapasitas": "Tersedia",
             "Tahun_Berdiri": 2010,
             "Wilayah_Administrasi": "Jakarta Utara",
@@ -231,7 +231,7 @@ def buat_data_tmu() -> gpd.GeoDataFrame:
         # ── Jakarta Barat (2 TMU) ──
         {
             "Nama_TMU": "TPU Tegal Alur",
-            "Luas_Area_m2": 120000,
+            "Luas_Area_m2": 547000,
             "Status_Kapasitas": "Tersedia",
             "Tahun_Berdiri": 2001,
             "Wilayah_Administrasi": "Jakarta Barat",
@@ -827,7 +827,8 @@ with tab1:
         <b>️ Disclaimer & Sumber Data:</b>
         <br>Data spasial (titik koordinat <i>Latitude/Longitude</i>) untuk lokasi TMU dan RPTRA didapatkan 
         secara presisi dari data dunia nyata melalui <b>OpenStreetMap</b> dan <b>Google Maps</b>. 
-        Namun, data atribut yang menyertainya (seperti Luas Area, Status Kapasitas, Tahun Berdiri, Fasilitas, dan Kondisi) 
+        Sebagian data atribut penting seperti <b>Luas Area TMU</b> juga menggunakan <b>Data Riil</b> dari berbagai sumber publik tepercaya.
+        Namun, untuk parameter lainnya (seperti Status Kapasitas, Tahun Berdiri, Fasilitas, dan Kondisi) 
         serta dataset tingkat RW pada modul Machine Learning merupakan <b>Data Simulasi (Mock/Synthetic Data)</b>. 
         Data simulasi ini dibuat secara terprogram menggunakan pustaka <code>pandas</code> dan <code>numpy</code> 
         untuk merepresentasikan kondisi riil (berdasarkan asumsi logika perencanaan kota dari Dinas Pertamanan dan Hutan Kota 
