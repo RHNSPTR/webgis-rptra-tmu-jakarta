@@ -902,7 +902,7 @@ with tab2:
         else:
             styled_new_data = new_data.style.applymap(color_pred, subset=['Prediksi_Prioritas'])
             
-        st.dataframe(styled_new_data, width="stretch")
+        st.dataframe(styled_new_data, use_container_width=True)
         st.info("💡 **Hasil Prediksi Berdasarkan Model:** Hijau = Sangat Prioritas (2), Kuning = Cukup Prioritas (1), Merah = Tidak Prioritas (0)")
 
     st.markdown("---")
