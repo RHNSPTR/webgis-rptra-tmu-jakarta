@@ -581,7 +581,7 @@ def tambah_legenda_ke_peta(m):
         legend.addTo({{ this._parent.get_name() }});
         {% endmacro %}
     """)
-    m.get_root().add_child(legend_macro)
+    m.add_child(legend_macro)
 
 
 # ─────────────────────────────────────────────
@@ -736,6 +736,15 @@ with tab1:
 
     # ===== Tampilkan Peta =====
     st_folium(m, use_container_width=True, height=620, returned_objects=[])
+
+    # Hilangkan space kosong di bawah peta (st_folium bug)
+    st.markdown("""
+    <style>
+        iframe[title="streamlit_folium.st_folium"] {
+            height: 620px !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
     # ─────────────────────────────────────────────
     # 15. STATISTIK RINGKAS
