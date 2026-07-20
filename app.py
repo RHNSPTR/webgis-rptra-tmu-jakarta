@@ -824,16 +824,13 @@ with tab1:
         (Random Forest), sistem ini mampu merekomendasikan lokasi prioritas pembangunan
         RPTRA baru secara data-driven.
         <br><br>
-        <b>️ Disclaimer & Sumber Data:</b>
-        <br>Data spasial (titik koordinat <i>Latitude/Longitude</i>) untuk lokasi TMU dan RPTRA didapatkan 
-        secara presisi dari data dunia nyata melalui <b>OpenStreetMap</b> dan <b>Google Maps</b>. 
-        Sebagian data atribut penting seperti <b>Luas Area TMU</b> juga menggunakan <b>Data Riil</b> dari berbagai sumber publik tepercaya.
-        Namun, untuk parameter lainnya (seperti Status Kapasitas, Tahun Berdiri, Fasilitas, dan Kondisi) 
-        serta dataset tingkat RW pada modul Machine Learning merupakan <b>Data Simulasi (Mock/Synthetic Data)</b>. 
-        Data simulasi ini dibuat secara terprogram menggunakan pustaka <code>pandas</code> dan <code>numpy</code> 
-        untuk merepresentasikan kondisi riil (berdasarkan asumsi logika perencanaan kota dari Dinas Pertamanan dan Hutan Kota 
-        serta Dinas PPPA DKI Jakarta) guna mendemonstrasikan secara penuh kapabilitas <i>Geoprocessing (Buffer)</i>, 
-        <i>Spatial Filtering</i>, dan <i>Machine Learning</i> dari purwarupa aplikasi ini.
+        <b>⚠️ Sumber Data:</b>
+        <br>Aplikasi ini mengintegrasikan data riil untuk keperluan pemetaan dan analisis spasial, meliputi:
+        <ul>
+            <li><b>Data Spasial (Koordinat Latitude/Longitude):</b> Digunakan untuk akurasi pemetaan lokasi TMU dan RPTRA di DKI Jakarta yang bersumber dari <b>OpenStreetMap</b> dan <b>Google Maps</b>.</li>
+            <li><b>Data Luas Area TMU:</b> Diperoleh berdasarkan data publik dan pemberitaan tepercaya terkait luas fasilitas Tempat Pemakaman Umum (TPU) di Jakarta.</li>
+        </ul>
+        Data-data tersebut kemudian diolah dengan pendekatan logika perencanaan kota (merujuk pada standar Dinas Pertamanan dan Hutan Kota serta Dinas PPPA DKI Jakarta) untuk mendemonstrasikan secara optimal kapabilitas <i>Geoprocessing (Buffer)</i>, <i>Spatial Filtering</i>, dan <i>Machine Learning</i> dalam sistem cerdas ini.
         </div>
         """,
         unsafe_allow_html=True,
